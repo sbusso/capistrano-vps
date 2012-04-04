@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance(true).load do
   set_default :ruby_version, "1.9.3-p125"
-  set_default :rbenv_bootstrap, "bootstrap-ubuntu-10-04"
+  # set_default :rbenv_bootstrap, "bootstrap-ubuntu-11-10"
 
   namespace :rbenv do
     desc "Install rbenv, Ruby, and the Bundler gem"
@@ -18,7 +18,9 @@ Capistrano::Configuration.instance(true).load do
       run "mv ~/.bashrc.tmp ~/.bashrc"
       run %q{export PATH="$HOME/.rbenv/bin:$PATH"}
       run %q{eval "$(rbenv init -)"}
-      run "rbenv #{rbenv_bootstrap}"
+      run "#{sudo} apt-get -y install build-essential"
+      run "#{sudo} apt-get -y install zlib1g-dev libssl-dev"
+      run "#{sudo} apt-get -y install libreadline-gplv2-dev"
       run "rbenv install #{ruby_version}"
       run "rbenv global #{ruby_version}"
       run "gem install bundler --no-ri --no-rdoc"
