@@ -1,1 +1,1 @@
-server "#{production_address}", :web, :app, :db, primary: true
+server "#staging_address#", :web, :app, :db, primary: true
