@@ -1,0 +1,1 @@
+server "#{production_address}", :web, :app, :db, primary: true

@@ -1,0 +1,18 @@
+# -*- encoding: utf-8 -*-
+require File.expand_path('../lib/capistrano_vps/version', __FILE__)
+
+Gem::Specification.new do |gem|
+  gem.authors       = ["Stephane Busso"]
+  gem.email         = "stephane.busso@gmail.com"
+  gem.date          = %q{2012-04-03}
+  gem.description   = %q{keeping vps recipes for ruby application}
+  gem.summary       = %q{bootstrap from railscast #335}
+  gem.homepage      = "http://activelabs.fr"
+
+  gem.files         = `git ls-files`.split($\)
+  # gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  # gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.name          = "capistrano_vps"
+  gem.require_paths = ["lib"]
+  gem.version       = CapistranoVps::VERSION
+end
