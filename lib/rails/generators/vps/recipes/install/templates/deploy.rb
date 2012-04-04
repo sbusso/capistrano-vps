@@ -33,10 +33,11 @@ require 'capistrano/ext/multistage'
 # =============================================================================
 
 require "bundler/capistrano"
-# load "capistrano_vps/recipes/base"
-# load "capistrano_vps/recipes/nginx"
+load "capistrano_vps/recipes/base"
+load "capistrano_vps/recipes/nginx"
 # load "capistrano_vps/recipes/unicorn"
-# load "capistrano_vps/recipes/postgresql"
-# load "capistrano_vps/recipes/nodejs"
-# load "capistrano_vps/recipes/rbenv"
-# load "capistrano_vps/recipes/check"
+load "capistrano_vps/recipes/postgresql"
+load "capistrano_vps/recipes/nodejs"
+# load "capistrano_vps/recipes/redis"
+load "capistrano_vps/recipes/rbenv"
+load "capistrano_vps/recipes/check"
