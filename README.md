@@ -10,7 +10,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'activelabs-recipes'
+    gem 'capistrano_vps', :git => "git://github.com/sbusso/capistrano_vps.git", :require => false
 
 And then execute:
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install activelabs-recipes
+    $ gem install capistrano_vps
 
 ## Usage
 
