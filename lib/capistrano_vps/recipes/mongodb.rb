@@ -4,8 +4,7 @@ Capistrano::Configuration.instance(true).load do
     desc "Install the latest release of MongoDB"
     task :install, roles: :app do
       run "#{sudo} apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10"
-      run "deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen"
-      run "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen"
+      run %q{#{sudo} echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" >> /etc/apt/sources.list}
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install mongodb-10gen"
     end
