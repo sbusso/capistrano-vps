@@ -32,6 +32,7 @@ exit
 cap deploy:install
 cap deploy:setup
 cap deploy:cold
+cap deploy:migrations
 ```
 
 ## Contributing
