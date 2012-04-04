@@ -1,1 +1,1 @@
-Dir[File.join(File.dirname(__FILE__), 'capistrano_vps/recipes/*.rb')].sort.each { |lib| require lib }
+Dir[File.join(File.dirname(__FILE__), 'capistrano_vps/recipes/*.rb')].sort.each { |lib| load lib }

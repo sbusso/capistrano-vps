@@ -33,10 +33,10 @@ require 'capistrano/ext/multistage'
 # =============================================================================
 
 require "bundler/capistrano"
-require "activelabs_recipes/capistrano/base"
-require "activelabs_recipes/capistrano/nginx"
-require "activelabs_recipes/capistrano/unicorn"
-require "activelabs_recipes/capistrano/postgresql"
-require "activelabs_recipes/capistrano/nodejs"
-require "activelabs_recipes/capistrano/rbenv"
-require "activelabs_recipes/capistrano/check"
+# load "capistrano_vps/recipes/base"
+# load "capistrano_vps/recipes/nginx"
+# load "capistrano_vps/recipes/unicorn"
+# load "capistrano_vps/recipes/postgresql"
+# load "capistrano_vps/recipes/nodejs"
+# load "capistrano_vps/recipes/rbenv"
+# load "capistrano_vps/recipes/check"
