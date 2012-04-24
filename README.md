@@ -29,6 +29,10 @@ ssh root@72.14.183.209
 addgroup admin
 adduser deployer --ingroup admin
 exit
+
+cat ~/.ssh/id_rsa.pub | ssh deployer@72.14.183.209 'cat >> ~/.ssh/authorized_keys'
+ssh-add # -K on Mac OS X
+
 cap deploy:install
 cap deploy:setup
 cap deploy:cold

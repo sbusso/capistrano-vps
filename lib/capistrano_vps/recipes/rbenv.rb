@@ -1,5 +1,5 @@
 Capistrano::Configuration.instance(true).load do
-  set_default :ruby_version, "1.9.3-p125"
+  set_default :ruby_version, "1.9.3-p194"
   # set_default :rbenv_bootstrap, "bootstrap-ubuntu-11-10"
 
   namespace :rbenv do
@@ -26,6 +26,22 @@ Capistrano::Configuration.instance(true).load do
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
     end
+
+    desc "Upgrade rbenv"
+    task :upgrade, roles: :app do
+      run "cd ~/.rbenv; git pull"
+      run "cd ~/.rbenv/plugins/ruby-build; git pull"
+    end
+
+    desc "Install ruby"
+    task :install_ruby, roles: :app do
+      run "rbenv install #{ruby_version}"
+      run "rbenv global #{ruby_version}"
+      run "gem install bundler --no-ri --no-rdoc"
+      run "rbenv rehash"
+    end
+
     after "deploy:install", "rbenv:install"
+    before "rbenv:install_ruby", "rbenv:upgrade"
   end
 end
