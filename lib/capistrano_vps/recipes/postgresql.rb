@@ -5,15 +5,21 @@ Capistrano::Configuration.instance(true).load do
   set_default(:postgresql_database) { "#{application}_production" }
   namespace :postgresql do
     desc "Install the latest stable release of PostgreSQL."
-    task :install, roles: :db, only: {primary: true} do
+    task :install, roles: :db_server do
       run "#{sudo} add-apt-repository -y ppa:pitti/postgresql"
       run "#{sudo} apt-get -y update"
-      run "#{sudo} apt-get -y install postgresql libpq-dev"
+      run "#{sudo} apt-get -y install postgresql"
     end
     after "deploy:install", "postgresql:install"
 
+    task :install_dev, roles: :db, only: {primary: true} do
+      run "#{sudo} apt-get -y install libpq-dev"
+    end
+    after "deploy:install", "postgresql:install_dev"
+
+
     desc "Create a database for this application."
-    task :create_database, roles: :db, only: {primary: true} do
+    task :create_database, roles: :db_server do
       run %Q{#{sudo} -u postgres psql -c "create user #{postgresql_user} with password '#{postgresql_password}';"}
       run %Q{#{sudo} -u postgres psql -c "create database #{postgresql_database} owner #{postgresql_user};"}
     end

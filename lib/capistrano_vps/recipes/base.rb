@@ -12,7 +12,7 @@ Capistrano::Configuration.instance(true).load do
     desc "Install everything onto the server"
     task :install do
       run "#{sudo} apt-get -y update"
-      run "#{sudo} apt-get -y install python-software-properties"
+      # run "#{sudo} apt-get -y install python-software-properties"
     end
   end
 end
