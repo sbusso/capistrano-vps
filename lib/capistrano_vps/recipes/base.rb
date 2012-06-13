@@ -16,3 +16,5 @@ Capistrano::Configuration.instance(true).load do
     end
   end
 end
+
+# dpkg-reconfigure locales
