@@ -33,5 +33,63 @@ Capistrano::Configuration.instance(true).load do
       run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     end
     after "deploy:finalize_update", "postgresql_client:symlink"
+
+
+    require 'yaml'
+
+    def sql_filename
+      @sql_filename  ||= "#{application}_#{@env}_#{Time.now.strftime '%Y-%m-%d'}.sql"
+    end
+
+    def filename
+      @filename ||= "#{sql_filename}.bz2"
+    end
+
+    def env
+      @env  ||= ENV['RAILS_ENV'] || ENV['DB'] || 'production'
+    end
+
+
+    desc "Dump database"
+    task :dump, :role => :app do
+      download("#{shared_path}/config/database.yml", "tmp/database.yml", roles: :app)
+      remote_database = YAML::load_file('tmp/database.yml')
+      on_rollback { delete "/tmp/#{@filename}" }
+      run "PGPASSWORD=#{remote_database['production']['password']} pg_dump --clean --no-owner --no-privileges -U #{remote_database['production']['username']} -h #{remote_database['production']['host']} #{remote_database['production']['database']} | bzip2 > /tmp/#{filename}", roles: :app
+    end
+
+    desc "Get database"
+    task :get, :role => :app do
+      download("/tmp/#{filename}", "tmp/#{filename}", roles: :app)
+      #run_locally("bzip2 -df tmp/#{@filename}")
+    end
+
+    desc "Import database"
+    task :import, :role => :app do
+      download("#{shared_path}/config/database.yml", "tmp/database.yml", roles: :app)
+      database = YAML::load_file('tmp/database.yml')
+      upload( "tmp/#{filename}", "/tmp/#{filename}", roles: :app)
+      run "bzip2 -df /tmp/#{filename}", roles: :app
+      run "PGPASSWORD=#{database['production']['password']} psql -U #{database['production']['username']} -h #{database['production']['host']} #{database['production']['database']} < /tmp/#{sql_filename}", roles: :app
+    end
+
+    desc "Duplicate database"
+    task :duplicate, :role => :app do
+      dump
+      get
+      # import
+    end
+
+    desc "Restore from ftp"
+    task :restore, :role => :app do
+
+    end
+
+
+
   end
+
+
+
+
 end
