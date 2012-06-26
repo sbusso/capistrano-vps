@@ -39,14 +39,7 @@ ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 3 releases
 
-# =============================================================================
-# STAGE SETTINGS
-# =============================================================================
-
-# set :default_stage, "experimental"
-set :stages, %w(production staging vps)
-set :default_stage, "staging"
-require 'capistrano/ext/multistage'
+server "#production_address", :web, :app, :db, primary: true
 
 # =============================================================================
 # RECIPE INCLUDES
@@ -64,12 +57,6 @@ require "capistrano_vps/recipes/rbenv"
 require "capistrano_vps/recipes/libxml"
 require "capistrano_vps/recipes/imagemagick"
 ```
-
-the staging file:
-```
-server "#production_address", :web, :app, :db, primary: true
-```
-
 
 ## Setup
 

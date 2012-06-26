@@ -38,7 +38,7 @@ Capistrano::Configuration.instance(true).load do
     require 'yaml'
 
     def sql_filename
-      @sql_filename  ||= "#{application}_#{@env}_#{Time.now.strftime '%Y-%m-%d'}.sql"
+      @sql_filename  ||= "#{application}_#{env}_#{Time.now.strftime '%Y-%m-%d'}.sql"
     end
 
     def filename
