@@ -1,5 +1,7 @@
 # Capistrano VPS
 
+Based on Capistrano recipes railscast: http://railscasts.com/episodes/337-capistrano-recipes?view=asciicast
+
 ## Installation
 
 Add this line to your application's Gemfile:
