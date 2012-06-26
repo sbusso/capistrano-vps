@@ -15,7 +15,7 @@ Capistrano::Configuration.instance(true).load do
     after "deploy:install", "postgresql_client:install"
 
     desc "Create a database for this application."
-    task :create_database, roles: :db, only: {primary: true} do
+    task :create_database, roles: :db_server do
       run %Q{#{sudo} -u postgres psql -c "create user #{postgresql_user} with password '#{postgresql_password}';"}
       run %Q{#{sudo} -u postgres psql -c "create database #{postgresql_database} owner #{postgresql_user};"}
     end
@@ -51,7 +51,7 @@ Capistrano::Configuration.instance(true).load do
 
 
     desc "Dump database"
-    task :dump, :role => :app do
+    task :dump, :role => :db_server do
       download("#{shared_path}/config/database.yml", "tmp/database.yml", roles: :app)
       remote_database = YAML::load_file('tmp/database.yml')
       on_rollback { delete "/tmp/#{@filename}" }
@@ -59,18 +59,18 @@ Capistrano::Configuration.instance(true).load do
     end
 
     desc "Get database"
-    task :get, :role => :app do
-      download("/tmp/#{filename}", "tmp/#{filename}", roles: :app)
+    task :get, :role => :db_server do
+      download("/tmp/#{filename}", "tmp/#{filename}", roles: :db_server)
       #run_locally("bzip2 -df tmp/#{@filename}")
     end
 
     desc "Import database"
-    task :import, :role => :app do
+    task :import, :role => :db_server do
       download("#{shared_path}/config/database.yml", "tmp/database.yml", roles: :app)
       database = YAML::load_file('tmp/database.yml')
-      upload( "tmp/#{filename}", "/tmp/#{filename}", roles: :app)
-      run "bzip2 -df /tmp/#{filename}", roles: :app
-      run "PGPASSWORD=#{database['production']['password']} psql -U #{database['production']['username']} -h #{database['production']['host']} #{database['production']['database']} < /tmp/#{sql_filename}", roles: :app
+      upload( "tmp/#{filename}", "/tmp/#{filename}", roles: :db_server)
+      run "bzip2 -df /tmp/#{filename}", roles: :db_server
+      run "PGPASSWORD=#{database['production']['password']} psql -U #{database['production']['username']} -h #{database['production']['host']} #{database['production']['database']} < /tmp/#{sql_filename}", roles: :db_server
     end
 
     desc "Duplicate database"
