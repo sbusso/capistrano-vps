@@ -5,6 +5,8 @@ Capistrano::Configuration.instance(true).load do
   set_default(:postgresql_user) { application }
   set_default(:postgresql_password) { Capistrano::CLI.password_prompt "Choose PostgreSQL Password: " }
   set_default(:postgresql_database) { "#{application}_production" }
+  set_default(:postgresql_host) { db_ip }
+
   namespace :postgresql_client do
     desc "Install the latest stable release of PostgreSQL."
     task :install, roles: :db, only: {primary: true} do
