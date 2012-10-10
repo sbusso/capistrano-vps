@@ -3,14 +3,19 @@ upstream unicorn-<%= application %> {
 }
 
 server {
-  listen 80 default deferred;
-  # server_name example.com;
+  listen 80;
+  server_name <%= application %>.com;
   root <%= current_path %>/public;
 
   location ^~ /assets/ {
     gzip_static on;
     expires max;
     add_header Cache-Control public;
+  }
+
+  if (-f $document_root/maintenance.html){
+    rewrite  ^(.*)$  /maintenance.html last;
+    break;
   }
 
   try_files $uri/index.html $uri @unicorn;
