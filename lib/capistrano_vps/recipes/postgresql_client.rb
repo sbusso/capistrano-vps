@@ -1,6 +1,6 @@
 Capistrano::Configuration.instance(true).load do
   db_server = find_servers(:roles => :db).first
-  db_ip = (db_server ? db_server.options[:internal] || 'locahost' : 'locahost')
+  db_ip = (db_server ? db_server.options[:internal] || 'localhost' : 'localhost')
   set_default(:postgresql_host, db_ip)
   set_default(:postgresql_user) { application }
   set_default(:postgresql_password) { Capistrano::CLI.password_prompt "Choose PostgreSQL Password: " }
