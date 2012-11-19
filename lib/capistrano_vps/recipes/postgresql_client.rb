@@ -8,7 +8,7 @@ Capistrano::Configuration.instance(true).load do
   set_default(:postgresql_host) { db_ip }
 
   namespace :postgresql_client do
-    desc "Install the latest stable release of PostgreSQL."
+    desc "Install dev libraries PostgreSQL."
     task :install, roles: :db, only: {primary: true} do
       run "#{sudo} add-apt-repository -y ppa:pitti/postgresql"
       run "#{sudo} apt-get -y update"
