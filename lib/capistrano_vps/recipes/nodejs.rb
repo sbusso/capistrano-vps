@@ -6,6 +6,6 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install nodejs"
     end
-    after "deploy:install", "nodejs:install"
+    after "server:prepare", "nodejs:install"
   end
 end

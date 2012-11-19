@@ -1,3 +1,3 @@
 module CapistranoVps
-  VERSION = "0.1.6"
+  VERSION = "0.3.0"
 end

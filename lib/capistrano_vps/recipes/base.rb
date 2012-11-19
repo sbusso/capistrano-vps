@@ -8,13 +8,25 @@ Capistrano::Configuration.instance(true).load do
     set(name, *args, &block) unless exists?(name)
   end
 
-  namespace :deploy do
-    desc "Install everything onto the server"
-    task :install do
+
+  namespace :server do
+    desc "Prepare server for installation"
+    task :prepare do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install python-software-properties"
     end
+
+    desc "Install everything onto the server"
+    task :install do
+      server.prepare
+      deploy.setup
+      deploy.cold
+      deploy.migrations
+    end
   end
+
+
+
 end
 
 #dpkg-reconfigure locales

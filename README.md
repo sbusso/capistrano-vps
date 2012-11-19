@@ -65,13 +65,17 @@ require "capistrano_vps/recipes/imagemagick"
 ```
 ssh root@72.14.183.209
 addgroup admin
-adduser deployer --ingroup admin
+adduser deployer --ingroup admin # usermod -a -G admin deployer
 exit
 
 cat ~/.ssh/id_rsa.pub | ssh deployer@72.14.183.209 'cat >> ~/.ssh/authorized_keys'
 ssh-add # -K on Mac OS X
 
-cap deploy:install
+cap server:install
+
+OR
+
+cap server:prepare
 cap deploy:setup
 cap deploy:cold
 cap deploy:migrations

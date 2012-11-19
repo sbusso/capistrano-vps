@@ -7,7 +7,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install redis-server"
     end
-    after "deploy:install", "redis:install"
+    after "server:prepare", "redis:install"
 
     # desc "Setup redis configuration for this application"
     # task :setup, roles: :web do

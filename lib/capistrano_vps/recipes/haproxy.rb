@@ -4,7 +4,7 @@ Capistrano::Configuration.instance(true).load do
     task :install, roles: :front do
       run "#{sudo} apt-get -y install haproxy"
     end
-    after "deploy:install", "haproxy:install"
+    after "server:prepare", "haproxy:install"
 
     desc "Setup haproxy default configuration"
     task :setup, roles: :front do

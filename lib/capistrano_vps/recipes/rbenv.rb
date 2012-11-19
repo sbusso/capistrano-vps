@@ -41,7 +41,7 @@ Capistrano::Configuration.instance(true).load do
       run "rbenv rehash"
     end
 
-    after "deploy:install", "rbenv:install"
+    after "server:prepare", "rbenv:install"
     before "rbenv:install_ruby", "rbenv:upgrade"
   end
 end
