@@ -9,7 +9,7 @@ Capistrano::Configuration.instance(true).load do
     desc "Setup haproxy default configuration"
     task :setup, roles: :front do
       template "haproxy.erb", "/tmp/haproxy_conf"
-      run "#{sudo} mv /tmp/haproxy_conf /etc/defaut/haproxy"
+      run "#{sudo} mv /tmp/haproxy_conf /etc/default/haproxy"
       restart
     end
     after "deploy:setup", "haproxy:setup"
