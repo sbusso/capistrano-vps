@@ -1,5 +1,5 @@
 Capistrano::Configuration.instance(true).load do
-  set_default :ruby_version, "1.9.3-p194"
+  set_default :ruby_version, "1.9.3-p327"
   # set_default :rbenv_bootstrap, "bootstrap-ubuntu-11-10"
 
   namespace :rbenv do
@@ -35,8 +35,9 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Install ruby"
     task :install_ruby, roles: :app do
-      run "rbenv install #{ruby_version}"
-      run "rbenv global #{ruby_version}"
+      run "curl https://raw.github.com/gist/4063779/#{:ruby_version}-patched.sh > /tmp/#{:ruby_version}-perf"
+      run "rbenv install /tmp/#{:ruby_version}-perf"
+      run "rbenv global #{ruby_version}-perf"
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
     end
