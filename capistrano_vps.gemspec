@@ -15,6 +15,6 @@ Gem::Specification.new do |gem|
   gem.name          = "capistrano_vps"
   gem.require_paths = ["lib"]
   gem.add_runtime_dependency 'capistrano'
-  gem.add_runtime_dependency 'capistrano_ext'
+  gem.add_runtime_dependency 'capistrano-ext'
   gem.version       = CapistranoVps::VERSION
 end
