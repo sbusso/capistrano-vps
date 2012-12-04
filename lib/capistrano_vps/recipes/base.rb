@@ -9,7 +9,7 @@ Capistrano::Configuration.instance(true).load do
   end
 
 
-  namespace :server do
+  namespace :vps do
     desc "Prepare server for installation"
     task :prepare do
       run "#{sudo} apt-get -y update"

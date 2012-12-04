@@ -5,16 +5,20 @@ Based on Capistrano recipes railscast: http://railscasts.com/episodes/337-capist
 ## Installation
 
 Add this line to your application's Gemfile:
+    gem 'capistrano'
+    gem 'capistrano_ext'
+    gem 'capistrano_vps', :git => "git://github.com/sbusso/capistrano_vps.git", :group => :development
 
-    gem 'capistrano_vps', :git => "git://github.com/sbusso/capistrano_vps.git", :require => false
+    $ capify .
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Generate the config files:
 
-    $ gem install capistrano_vps
+rails g vps:recipes:install
+
 
 ## Usage
 
@@ -66,16 +70,21 @@ require "capistrano_vps/recipes/imagemagick"
 ssh root@72.14.183.209
 addgroup admin
 adduser deployer --ingroup admin # usermod -a -G admin deployer
+cp .bashrc /home/deployer/
+chown deployer /home/deployer/.bashrc
+su - deployer
+mkdir /home/deployer/.ssh
+
 exit
 
 cat ~/.ssh/id_rsa.pub | ssh deployer@72.14.183.209 'cat >> ~/.ssh/authorized_keys'
 ssh-add # -K on Mac OS X
 
-cap server:install
+cap vps:install
 
 OR
 
-cap server:prepare
+cap vps:prepare
 cap deploy:setup
 cap deploy:cold
 cap deploy:migrations
