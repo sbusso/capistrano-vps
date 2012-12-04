@@ -90,6 +90,11 @@ cap deploy:cold
 cap deploy:migrations
 ```
 
+## TODO
+
+* fix need of bundle exec
+* postgresql 1 requirement
+
 ## Contributing
 
 1. Fork it

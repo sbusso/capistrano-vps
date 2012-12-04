@@ -18,7 +18,7 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Install everything onto the server"
     task :install do
-      server.prepare
+      vps.prepare
       deploy.setup
       deploy.cold
       deploy.migrations
