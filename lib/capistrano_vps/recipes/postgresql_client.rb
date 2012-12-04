@@ -14,7 +14,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install libpq-dev"
     end
-    after "server:prepare", "postgresql_client:install"
+    after "vps:prepare", "postgresql_client:install"
 
     desc "Create a database for this application."
     task :create_database, roles: :db_server do

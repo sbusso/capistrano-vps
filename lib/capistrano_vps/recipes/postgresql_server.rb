@@ -10,7 +10,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install postgresql"
     end
-    after "server:prepare", "postgresql:install"
+    after "vps:prepare", "postgresql:install"
 
     # task :install_dev, roles: :db, only: {primary: true} do
     #   run "#{sudo} apt-get -y install libpq-dev"

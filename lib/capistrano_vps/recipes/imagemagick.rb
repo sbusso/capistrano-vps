@@ -5,6 +5,6 @@ Capistrano::Configuration.instance(true).load do
     task :install, roles: :app do
       run "#{sudo} apt-get install imagemagick libmagickwand-dev -y"
     end
-    after "server:prepare", "imagemagick:install"
+    after "vps:prepare", "imagemagick:install"
   end
 end
