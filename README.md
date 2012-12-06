@@ -94,6 +94,13 @@ cap deploy:migrations
 
 * fix need of bundle exec
 * postgresql 1 requirement
+* capify
+* uncomment assets in capify
+* check unicorn in gemfile
+* load as independant gem / gemfile (last have error with rake)
+* unicorn unix socket
+* thin recipes
+* use capistrano stage to configure environment (unicorn, db, etc..)
 
 ## Contributing
 

@@ -6,3 +6,14 @@ stdout_path "<%= unicorn_log %>"
 listen "/tmp/unicorn.<%= application %>.sock"
 worker_processes <%= unicorn_workers %>
 timeout 30
+preload_app true
+# worker_processes 2
+# before_fork do |server, worker|
+#  defined?(ActiveRecord::Base) and
+#      ActiveRecord::Base.connection.disconnect!
+# end
+
+after_fork do |server, worker|
+   defined?(ActiveRecord::Base) and
+      ActiveRecord::Base.establish_connection
+end

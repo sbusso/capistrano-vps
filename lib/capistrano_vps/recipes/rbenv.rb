@@ -21,8 +21,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y install build-essential"
       run "#{sudo} apt-get -y install zlib1g-dev libssl-dev"
       run "#{sudo} apt-get -y install libreadline-gplv2-dev"
-      run "rbenv install #{ruby_version}"
-      run "rbenv global #{ruby_version}"
+      rbenv.install_ruby
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
     end
