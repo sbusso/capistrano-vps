@@ -5,7 +5,7 @@ Capistrano::Configuration.instance(true).load do
     task :install, roles: :app do
       run "#{sudo} apt-get -y install curl libcurl3 libcurl3-dev"
     end
-    after "vps:prepare", "libcurl:install"
+    after "cap_vps:prepare", "libcurl:install"
 
   end
 end

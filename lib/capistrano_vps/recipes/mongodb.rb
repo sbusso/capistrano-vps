@@ -8,7 +8,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install mongodb-10gen"
     end
-    after "vps:prepare", "mongodb:install"
+    after "cap_vps:prepare", "mongodb:install"
 
     %w[start stop restart].each do |command|
       desc "#{command} mongodb"

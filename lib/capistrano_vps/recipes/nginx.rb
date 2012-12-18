@@ -6,7 +6,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install nginx"
     end
-    after "vps:prepare", "nginx:install"
+    after "cap_vps:prepare", "nginx:install"
 
     desc "Setup nginx configuration for this application"
     task :setup, roles: :web do

@@ -7,7 +7,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install redis-server"
     end
-    after "vps:prepare", "redis:install"
+    after "cap_vps:prepare", "redis:install"
 
     # desc "Setup redis configuration for this application"
     # task :setup, roles: :web do

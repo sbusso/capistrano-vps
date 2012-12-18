@@ -5,7 +5,7 @@ Capistrano::Configuration.instance(true).load do
     task :install, roles: :app do
       run "#{sudo} apt-get -y install libxml2 libxml2-dev libxslt1-dev"
     end
-    after "vps:prepare", "libxml:install"
+    after "cap_vps:prepare", "libxml:install"
 
   end
 end

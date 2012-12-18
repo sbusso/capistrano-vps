@@ -9,7 +9,7 @@ Capistrano::Configuration.instance(true).load do
   end
 
 
-  namespace :vps do
+  namespace :cap_vps do
     desc "Prepare server for installation"
     task :prepare do
       run "#{sudo} apt-get -y update"
@@ -18,7 +18,7 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Install everything onto the server"
     task :install do
-      vps.prepare
+      cap_vps.prepare
       deploy.setup
       deploy.cold
       deploy.migrations

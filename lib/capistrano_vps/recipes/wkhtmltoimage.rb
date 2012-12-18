@@ -11,6 +11,6 @@ Capistrano::Configuration.instance(true).load do
 
 
     end
-    after "vps:prepare", "html2image:install"
+    after "cap_vps:prepare", "html2image:install"
   end
 end

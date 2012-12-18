@@ -16,7 +16,7 @@ Capistrano::Configuration.instance(true).load do
       run "#{sudo} /usr/local/share/elasticsearch/bin/service/elasticsearch install"
       run "#{sudo} ln -s `readlink -f /usr/local/share/elasticsearch/bin/service/elasticsearch` /usr/local/bin/rcelasticsearch"
     end
-    after "vps:prepare", "es:install"
+    after "cap_vps:prepare", "es:install"
 
     %w[start stop restart].each do |command|
       desc "#{command} elasticsearch"
