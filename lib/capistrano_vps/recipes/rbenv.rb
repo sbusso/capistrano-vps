@@ -34,8 +34,8 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Install ruby"
     task :install_ruby, roles: :app do
-      run "curl https://raw.github.com/gist/4063779/#{:ruby_version}-patched.sh > /tmp/#{:ruby_version}-perf"
-      run "rbenv install /tmp/#{:ruby_version}-perf"
+      run "curl https://raw.github.com/gist/4063779/#{ruby_version}-patched.sh > /tmp/#{ruby_version}-perf"
+      run "rbenv install /tmp/#{ruby_version}-perf"
       run "rbenv global #{ruby_version}-perf"
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
