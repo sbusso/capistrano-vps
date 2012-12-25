@@ -94,6 +94,7 @@ cap deploy:migrations
 
 * fix need of bundle exec
 * fix install bundle for new rails (patch perf)
+* Add milestone to only install new packages
 * postgresql 1 requirement
 * capify
 * uncomment assets in capify
