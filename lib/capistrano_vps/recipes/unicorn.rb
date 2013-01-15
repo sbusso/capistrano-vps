@@ -16,7 +16,7 @@ Capistrano::Configuration.instance(true).load do
     end
     after "deploy:setup", "unicorn:setup"
 
-    %w[start stop restart].each do |command|
+    %w[start stop restart upgrade].each do |command|
       desc "#{command} unicorn"
       task command, roles: :app do
         run "service unicorn_#{application} #{command}"

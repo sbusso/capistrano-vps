@@ -3,7 +3,7 @@ pid "<%= unicorn_pid %>"
 stderr_path "<%= unicorn_log %>"
 stdout_path "<%= unicorn_log %>"
 
-listen "<%= current_path %>/tmp/unicorn.<%= application %>.sock", :backlog => 64
+listen "/tmp/unicorn.<%= application %>.sock", :backlog => 64
 worker_processes <%= unicorn_workers %>
 timeout 30
 # To save some memory and improve performance
