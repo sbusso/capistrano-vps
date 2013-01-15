@@ -104,6 +104,7 @@ cap deploy:migrations
 * thin recipes
 * use capistrano stage to configure environment (unicorn, db, etc..)
 * fix dpkg-reconfigure locales
+* Add maintenance tasks + page
 
 ## Contributing
 
