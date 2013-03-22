@@ -1,5 +1,5 @@
 Capistrano::Configuration.instance(true).load do
-  set_default :ruby_version, "1.9.3-p327"
+  set_default :ruby_version, "1.9.3-p362"
   # set_default :rbenv_bootstrap, "bootstrap-ubuntu-11-10"
 
   namespace :rbenv do
@@ -34,9 +34,10 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Install ruby"
     task :install_ruby, roles: :app do
-      run "curl https://raw.github.com/gist/4063779/#{ruby_version}-patched.sh > /tmp/#{ruby_version}-perf"
-      run "rbenv install /tmp/#{ruby_version}-perf"
-      run "rbenv global #{ruby_version}-perf"
+      run "export RUBY_GC_MALLOC_LIMIT=60000000; export RUBY_FREE_MIN=200000; curl https://raw.github.com/gist/4637375/rbenv.sh | sh "
+      # run "curl https://raw.github.com/gist/1688857/2-#{ruby_version}-patched.sh > /tmp/#{ruby_version}-perf"
+      # run "rbenv install /tmp/#{ruby_version}-perf"
+      run "rbenv global 1.9.3-p392-railsexpress"
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
     end

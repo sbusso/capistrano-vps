@@ -13,7 +13,7 @@ Capistrano::Configuration.instance(true).load do
     desc "Prepare server for installation"
     task :prepare do
       run "#{sudo} apt-get -y update"
-      run "#{sudo} apt-get -y install python-software-properties"
+      run "#{sudo} apt-get -y install python-software-properties autoconf"
     end
 
     desc "Install everything onto the server"
