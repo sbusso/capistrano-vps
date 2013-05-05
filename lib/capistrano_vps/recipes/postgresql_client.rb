@@ -3,7 +3,7 @@ Capistrano::Configuration.instance(true).load do
   db_ip = (db_server ? db_server.options[:internal] || 'localhost' : 'localhost')
   set_default(:postgresql_host, db_ip)
   set_default(:postgresql_user) { application }
-  set_default(:postgresql_password) { Capistrano::CLI.password_prompt "Choose PostgreSQL Password: " }
+  set_default(:postgresql_password) { (0...10).map{(65+rand(60)).chr}.join } #random password instead, Capistrano::CLI.password_prompt "Choose PostgreSQL Password: " }
   set_default(:postgresql_database) { "#{application}_production" }
   set_default(:postgresql_host) { db_ip }
 
@@ -35,8 +35,8 @@ Capistrano::Configuration.instance(true).load do
       run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     end
     after "deploy:finalize_update", "postgresql_client:symlink"
-
-
+  end
+  namespace :db do
     require 'yaml'
 
     def sql_filename
@@ -52,12 +52,13 @@ Capistrano::Configuration.instance(true).load do
     end
 
 
+
     desc "Dump database"
     task :dump, :role => :db_server do
       download("#{shared_path}/config/database.yml", "tmp/database.yml", roles: :app)
       remote_database = YAML::load_file('tmp/database.yml')
       on_rollback { delete "/tmp/#{@filename}" }
-      run "PGPASSWORD=#{remote_database['production']['password']} pg_dump --clean --no-owner --no-privileges -U #{remote_database['production']['username']} -h #{remote_database['production']['host']} #{remote_database['production']['database']} | bzip2 > /tmp/#{filename}", roles: :app
+      run %Q{#{sudo} -u postgres pg_dump --clean --no-owner --no-privileges #{remote_database['production']['database']} | bzip2 > /tmp/#{filename}}, roles: :db_server
     end
 
     desc "Get database"
@@ -75,15 +76,27 @@ Capistrano::Configuration.instance(true).load do
       run "PGPASSWORD=#{database['production']['password']} psql -U #{database['production']['username']} -h #{database['production']['host']} #{database['production']['database']} < /tmp/#{sql_filename}", roles: :db_server
     end
 
+    desc "Get database file"
+    task :pull do
+      dump
+      get
+    end
+
+    desc "Push database file and import"
+    task :push, :role => :db_server do
+      # import
+    end
+
+
     desc "Duplicate database"
-    task :duplicate, :role => :app do
+    task :duplicate, :role =>  :db_server do
       dump
       get
       # import
     end
 
     desc "Restore from ftp"
-    task :restore, :role => :app do
+    task :restore, :role =>  :db_server do
 
     end
 

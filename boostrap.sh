@@ -12,6 +12,14 @@ apt-get -y install zlib1g-dev libssl-dev libreadline-gplv2-dev
 apt-get -y install nano htop
 apt-get clean
 
+
+echo 'LC_ALL=en_US.UTF-8' > /etc/environment
+echo 'LC_CTYPE=en_US.UTF-8'
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+locale-gen en_US.UTF-8
+dpkg-reconfigure locales
+
 # Setup sudo to allow no-password sudo for "admin"
 groupadd -r admin
 useradd -d /home/deployer --password rUCqgryF5fqKM --groups admin -m deployer
