@@ -19,6 +19,26 @@ Generate the config files:
 
 rails g vps:recipes:install
 
+## Setup
+
+Connect to the server:
+```
+ssh root@72.14.183.209
+bash < <(curl -s https://raw.github.com/sbusso/capistrano_vps/master/boostrap.sh)
+```
+
+On your local project:
+```
+ssh-add # -K on Mac OS X
+cap vps:install
+
+# OR
+
+cap vps:prepare
+cap deploy:setup
+cap deploy:cold
+cap deploy:migrations
+```
 
 ## Usage
 
@@ -64,42 +84,18 @@ Deploy file example:
   require "capistrano_vps/recipes/imagemagick"
 ```
 
-## Setup
-
-Connect to the server:
-```
-ssh root@72.14.183.209
-bash < <(curl -s https://raw.github.com/sbusso/capistrano_vps/master/boostrap.sh)
-```
-
-On your local project:
-```
-ssh-add # -K on Mac OS X
-cap vps:install
-
-# OR
-
-cap vps:prepare
-cap deploy:setup
-cap deploy:cold
-cap deploy:migrations
-```
-
 ## TODO
 
-* fix need of bundle exec
 * fix install bundle for new rails (patch perf)
-* Add milestone to only install new packages
-* postgresql 1 requirement
-* capify
+* only install new packages
+* extend capify
 * uncomment assets in capify
-* check unicorn in gemfile
 * load as independant gem / gemfile (last have error with rake)
+* check unicorn in gemfile
 * unicorn unix socket
 * thin recipes
 * use capistrano stage to configure environment (unicorn, db, etc..)
-* fix dpkg-reconfigure locales
-* Add maintenance tasks + page
+* add maintenance tasks + page
 
 ## Contributing
 
