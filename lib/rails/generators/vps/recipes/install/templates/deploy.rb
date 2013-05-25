@@ -8,7 +8,7 @@ set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false
 set :deploy_via, :remote_cache
 set :scm, :git
-set :repository, "git@github.com:sbusso/#{application}.git"
+set :repository, "git@gitlab.com:sbusso/#{application}.git"
 set :git_enable_submodules, 1
 set :keep_releases, 3
 set :branch, "master"

@@ -22,7 +22,7 @@ dpkg-reconfigure locales
 
 # Setup sudo to allow no-password sudo for "admin"
 groupadd -r admin
-useradd -d /home/deployer --password  --groups admin -m deployer
+useradd -d /home/deployer --password `date +s% | sha256sum | base64 | head -c 32`  --groups admin -m deployer
 usermod -s /bin/bash deployer
 cp /etc/sudoers /etc/sudoers.orig
 sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=admin' /etc/sudoers

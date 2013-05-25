@@ -3,7 +3,7 @@ Capistrano::Configuration.instance(true).load do
   db_ip = (db_server ? db_server.options[:internal] || 'localhost' : 'localhost')
   set_default(:postgresql_host, db_ip)
   set_default(:postgresql_user) { application }
-  set_default(:postgresql_password) { (0...10).map{(65+rand(60)).chr}.join } #random password instead, Capistrano::CLI.password_prompt "Choose PostgreSQL Password: " }
+  set_default(:postgresql_password) { (0...10).map{(65+rand(60)).chr}.join.gsub('`', ':') } #random password instead, Capistrano::CLI.password_prompt "Choose PostgreSQL Password: " }
   set_default(:postgresql_database) { "#{application}_production" }
   set_default(:postgresql_host) { db_ip }
 
@@ -84,7 +84,7 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Push database file and import"
     task :push, :role => :db_server do
-      # import
+      import
     end
 
 
