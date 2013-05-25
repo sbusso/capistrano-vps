@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/capistrano_vps/version', __FILE__)
+require File.expand_path('../lib/capistrano-vps/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Stephane Busso"]
@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($\)
   # gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   # gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "capistrano_vps"
+  gem.name          = "capistrano-vps"
   gem.require_paths = ["lib"]
   gem.add_runtime_dependency 'capistrano'
   gem.add_runtime_dependency 'capistrano-ext'

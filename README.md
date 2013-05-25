@@ -6,8 +6,8 @@ Based on Capistrano recipes railscast: http://railscasts.com/episodes/337-capist
 
 Add this line to your application's Gemfile:
     gem 'capistrano'
-    gem 'capistrano_ext'
-    gem 'capistrano_vps', :git => "git://github.com/sbusso/capistrano_vps.git", :group => :development
+    gem 'capistrano-ext'
+    gem 'capistrano-vps', :git => "git://github.com/sbusso/capistrano-vps.git", :group => :development
 
     $ capify .
 
@@ -24,7 +24,7 @@ rails g vps:recipes:install
 Connect to the server:
 ```
 ssh root@72.14.183.209
-bash < <(curl -s https://raw.github.com/sbusso/capistrano_vps/master/boostrap.sh)
+bash < <(curl -s https://raw.github.com/sbusso/capistrano-vps/master/boostrap.sh)
 ```
 
 On your local project:
@@ -72,16 +72,16 @@ Deploy file example:
   # =============================================================================
 
   require "bundler/capistrano"
-  require "capistrano_vps/recipes/base"
-  require "capistrano_vps/recipes/nginx"
-  require "capistrano_vps/recipes/unicorn"
-  require "capistrano_vps/recipes/postgresql"
-  require "capistrano_vps/recipes/postgresql_client"
-  require "capistrano_vps/recipes/nodejs"
-  require "capistrano_vps/recipes/redis"
-  require "capistrano_vps/recipes/rbenv"
-  require "capistrano_vps/recipes/libxml"
-  require "capistrano_vps/recipes/imagemagick"
+  require "capistrano-vps/recipes/base"
+  require "capistrano-vps/recipes/nginx"
+  require "capistrano-vps/recipes/unicorn"
+  require "capistrano-vps/recipes/postgresql"
+  require "capistrano-vps/recipes/postgresql_client"
+  require "capistrano-vps/recipes/nodejs"
+  require "capistrano-vps/recipes/redis"
+  require "capistrano-vps/recipes/rbenv"
+  require "capistrano-vps/recipes/libxml"
+  require "capistrano-vps/recipes/imagemagick"
 ```
 
 ## TODO
