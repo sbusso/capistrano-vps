@@ -66,23 +66,18 @@ Deploy file example:
 
 ## Setup
 
+Connect to the server:
 ```
 ssh root@72.14.183.209
-addgroup admin
-adduser deployer --ingroup admin # usermod -a -G admin deployer
-cp .bashrc /home/deployer/
-chown deployer /home/deployer/.bashrc
-su - deployer
-mkdir /home/deployer/.ssh
+bash < <(curl -s https://raw.github.com/sbusso/capistrano_vps/master/boostrap.sh)
+```
 
-exit
-
-cat ~/.ssh/id_rsa.pub | ssh deployer@72.14.183.209 'cat >> ~/.ssh/authorized_keys'
+On your local project:
+```
 ssh-add # -K on Mac OS X
-
 cap vps:install
 
-OR
+# OR
 
 cap vps:prepare
 cap deploy:setup
