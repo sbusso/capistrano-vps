@@ -6,7 +6,6 @@ Based on Capistrano recipes railscast: http://railscasts.com/episodes/337-capist
 
 Add this line to your application's Gemfile:
     gem 'capistrano'
-    gem 'capistrano-ext'
     gem 'capistrano-vps', :git => "git://github.com/sbusso/capistrano-vps.git", :group => :development
 
     $ capify .
