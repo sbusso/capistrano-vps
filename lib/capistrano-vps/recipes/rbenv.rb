@@ -34,10 +34,12 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Install ruby"
     task :install_ruby, roles: :app do
-      run "export RUBY_GC_MALLOC_LIMIT=60000000; export RUBY_FREE_MIN=200000; curl https://raw.github.com/gist/4637375/rbenv.sh | sh "
+      run "export RUBY_GC_MALLOC_LIMIT=60000000; export RUBY_FREE_MIN=200000" #"; curl https://raw.github.com/gist/4637375/rbenv.sh | sh "
+
       # run "curl https://raw.github.com/gist/1688857/2-#{ruby_version}-patched.sh > /tmp/#{ruby_version}-perf"
       # run "rbenv install /tmp/#{ruby_version}-perf"
-      run "rbenv global 1.9.3-p392-railsexpress"
+      run "rbenv install #{ruby_version}"
+      run "rbenv global #{ruby_version}"
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
     end

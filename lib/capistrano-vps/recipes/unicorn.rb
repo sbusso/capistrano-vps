@@ -13,6 +13,9 @@ Capistrano::Configuration.instance(true).load do
       run "chmod +x /tmp/unicorn_init"
       run "#{sudo} mv /tmp/unicorn_init /etc/init.d/unicorn_#{application}"
       run "#{sudo} update-rc.d -f unicorn_#{application} defaults"
+      template "nginx_unicorn.erb", "/tmp/nginx_conf"
+      run "#{sudo} mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{application}"
+      nginx.restart
     end
     after "deploy:setup", "unicorn:setup"
 

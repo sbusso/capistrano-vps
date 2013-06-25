@@ -11,6 +11,9 @@ Capistrano::Configuration.instance(true).load do
       template "haproxy.erb", "/tmp/haproxy_conf"
       run "#{sudo} mv /tmp/haproxy_conf /etc/default/haproxy"
       restart
+      template "nginx_haproxy.erb", "/tmp/nginx_conf"
+      run "#{sudo} mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{application}"
+      nginx.restart
     end
     after "deploy:setup", "haproxy:setup"
 
