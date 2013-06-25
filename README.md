@@ -90,7 +90,6 @@ Deploy file example:
 * uncomment assets in capify
 * load as independant gem / gemfile (last have error with rake)
 * check unicorn in gemfile
-* unicorn unix socket
 * use capistrano stage to configure environment (unicorn, db, etc..)
 * add maintenance tasks + page
 * add test for version 1.0 - look at carpet (https://github.com/sbusso/carpet/blob/master/spec/capistrano/deploy/remote_dependency_spec.rb, https://github.com/technicalpickles/capistrano-spec)
