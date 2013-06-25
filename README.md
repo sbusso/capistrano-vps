@@ -74,7 +74,7 @@ Deploy file example:
   require "capistrano-vps/recipes/base"
   require "capistrano-vps/recipes/nginx"
   require "capistrano-vps/recipes/unicorn"
-  require "capistrano-vps/recipes/postgresql"
+  require "capistrano-vps/recipes/postgresql_server"
   require "capistrano-vps/recipes/postgresql_client"
   require "capistrano-vps/recipes/nodejs"
   require "capistrano-vps/recipes/redis"
@@ -85,14 +85,12 @@ Deploy file example:
 
 ## TODO
 
-* fix install bundle for new rails (patch perf)
 * only install new packages
 * extend capify
 * uncomment assets in capify
 * load as independant gem / gemfile (last have error with rake)
 * check unicorn in gemfile
 * unicorn unix socket
-* thin recipes
 * use capistrano stage to configure environment (unicorn, db, etc..)
 * add maintenance tasks + page
 * add test for version 1.0 - look at carpet (https://github.com/sbusso/carpet/blob/master/spec/capistrano/deploy/remote_dependency_spec.rb, https://github.com/technicalpickles/capistrano-spec)
