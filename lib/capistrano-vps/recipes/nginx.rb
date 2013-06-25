@@ -10,6 +10,10 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Setup nginx configuration for this application"
     task :setup, roles: :web do
+      # send to nginx_conf
+      #   http {
+      #     server_names_hash_bucket_size 32;
+      #   }
       run "#{sudo} rm -f /etc/nginx/sites-enabled/default"
       restart
     end

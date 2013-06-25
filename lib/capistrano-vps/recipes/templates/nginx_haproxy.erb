@@ -1,3 +1,7 @@
+http {
+    server_names_hash_bucket_size 32;
+}
+
 server {
   listen 80;
   server_name <%= application %>.com;

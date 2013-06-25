@@ -8,8 +8,11 @@ Capistrano::Configuration.instance(true).load do
 
     desc "Setup haproxy default configuration"
     task :setup, roles: :front do
-      template "haproxy.erb", "/tmp/haproxy_conf"
-      run "#{sudo} mv /tmp/haproxy_conf /etc/default/haproxy"
+      template "haproxy.erb", "/tmp/haproxy_default_conf"
+      run "#{sudo} mv /tmp/haproxy_default_conf /etc/default/haproxy"
+      template "haproxy_conf.erb", "/tmp/haproxy_conf"
+      run "#{sudo} mv /tmp/haproxy_conf /etc/haproxy/haproxy.cfg"
+      # !!! /etc/init.d/haproxy > ENABLED=1
       restart
       template "nginx_haproxy.erb", "/tmp/nginx_conf"
       run "#{sudo} mv /tmp/nginx_conf /etc/nginx/sites-enabled/#{application}"
