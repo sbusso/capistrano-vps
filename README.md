@@ -29,11 +29,11 @@ bash < <(curl -s https://raw.github.com/sbusso/capistrano-vps/master/boostrap.sh
 On your local project:
 ```
 ssh-add # -K on Mac OS X
-cap vps:install
+cap cap_vps:install
 
 # OR
 
-cap vps:prepare
+cap cap_vps:prepare
 cap deploy:setup
 cap deploy:cold
 cap deploy:migrations
@@ -95,6 +95,7 @@ Deploy file example:
 * thin recipes
 * use capistrano stage to configure environment (unicorn, db, etc..)
 * add maintenance tasks + page
+* add test for version 1.0 - look at carpet (https://github.com/sbusso/carpet/blob/master/spec/capistrano/deploy/remote_dependency_spec.rb, https://github.com/technicalpickles/capistrano-spec)
 
 ## Contributing
 

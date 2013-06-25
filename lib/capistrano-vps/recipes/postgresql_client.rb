@@ -100,6 +100,10 @@ Capistrano::Configuration.instance(true).load do
 
     end
 
+    # TODO add a command to alter user password:
+    # * sudo -u postgres psql -c "ALTER USER appuser WITH PASSWORD 'password';"
+    # * update databse.yml
+    # * manage putistage environment (staging)
 
 
   end

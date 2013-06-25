@@ -10,6 +10,7 @@ apt-get -y upgrade
 
 echo 'LC_ALL=en_US.UTF-8' > /etc/environment
 echo 'LC_CTYPE=en_US.UTF-8' > /etc/environment
+
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 locale-gen en_US.UTF-8

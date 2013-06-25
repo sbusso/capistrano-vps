@@ -2,7 +2,7 @@ Capistrano::Configuration.instance(true).load do
   namespace :haproxy do
     desc "Install latest stable release of haproxy"
     task :install, roles: :front do
-      run "#{sudo} apt-get -y install haproxy"
+      run "DEBIAN_FRONTEND=noninteractive #{sudo} apt-get -y install haproxy"
     end
     after "cap_vps:prepare", "haproxy:install"
 
