@@ -24,6 +24,7 @@ Capistrano::Configuration.instance(true).load do
       puts "WEBSITE HAS BEEN DEPLOYED"
     end
     after "deploy:start", "thin:restart"
+    after "deploy:restart", "thin:restart"
 
   end
 
