@@ -23,7 +23,7 @@ rails g vps:recipes:install
 Connect to the server:
 ```
 ssh root@72.14.183.209
-bash < <(curl -s https://raw.github.com/sbusso/capistrano-vps/master/boostrap.sh)
+bash < <(curl -s https://raw.github.com/sbusso/capistrano-vps/master/bootstrap.sh)
 ```
 
 On your local project:
