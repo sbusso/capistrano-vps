@@ -7,6 +7,7 @@ Based on Capistrano recipes railscast: http://railscasts.com/episodes/337-capist
 Add this line to your application's Gemfile:
     gem 'capistrano'
     gem 'capistrano-vps', :git => "git://github.com/sbusso/capistrano-vps.git", :group => :development
+    # gem "capistrano-vps", require: false
 
     $ capify .
 
@@ -85,6 +86,8 @@ Deploy file example:
 
 ## TODO
 
+* add config.yml, configure everything from this file
+* add sudo apt-get install openjdk-7-jre
 * only install new packages
 * extend capify
 * uncomment assets in capify
@@ -93,6 +96,7 @@ Deploy file example:
 * use capistrano stage to configure environment (unicorn, db, etc..)
 * add maintenance tasks + page
 * add test for version 1.0 - look at carpet (https://github.com/sbusso/carpet/blob/master/spec/capistrano/deploy/remote_dependency_spec.rb, https://github.com/technicalpickles/capistrano-spec)
+* rename to 'capistrano-provisonner'
 
 ## Contributing
 
