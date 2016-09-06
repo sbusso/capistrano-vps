@@ -38,7 +38,7 @@ Capistrano::Configuration.instance(true).load do
 
       # run "curl https://raw.github.com/gist/1688857/2-#{ruby_version}-patched.sh > /tmp/#{ruby_version}-perf"
       # run "rbenv install /tmp/#{ruby_version}-perf"
-      run "rbenv install #{ruby_version}"
+      run "rbenv install -f #{ruby_version}"
       run "rbenv global #{ruby_version}"
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
