@@ -1,3 +1,5 @@
+> DEPRECATED: There is a much better and maintained gem [capistrano-mb](https://github.com/mattbrictson/capistrano-mb) (2017-07)
+
 # Capistrano VPS
 
 Based on Capistrano recipes railscast: http://railscasts.com/episodes/337-capistrano-recipes?view=asciicast
